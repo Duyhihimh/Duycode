@@ -121,7 +121,7 @@ class MaximizedWindow(tk.Tk):
         # scale diffrnt để rể quan sát
         extrema = ela_image2.getextrema()
         max_diff = max([ex[1] for ex in extrema])
-        scale = 255.0 / max_diff if max_diff != 0 else 1  # Đảm bảo không chia cho 0
+        scale = 255.0 / max_diff if max_diff != 0 else 1  # Bắt lỗi chia cho 0
         ela_image2 = ela_image2.point(lambda p: p * scale)
 
         # Trả về ảnh ELA đã được xử lý
