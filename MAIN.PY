@@ -104,15 +104,15 @@ class MaximizedWindow(tk.Tk):
 
     def perform_ela(self, image, quality=90):
         """
-        Thực hiện ELA 
         :param image: Ảnh gốc.
-        :param quality: Mức độ nén (compression quality) để tạo ảnh nén.
+        :param quality: Mức độ nén (compression quality)
         """
-        # Lưu ảnh với chất lượng nén cụ thể ở đây mặc định cho 90
+        # Lưu ảnh với chất lượng nén cụ thể, hiện tại cho 90 sau thêm entry get quality sau
         ela_temp_filename = "temp_ela.jpg"
         image.save(ela_temp_filename, 'JPEG', quality=quality)
 
         # Mở lại ảnh đã nén
+        
         compressed_image = Image.open(ela_temp_filename)
 
         # Tính toán sự khác biệt giữa ảnh gốc và ảnh nén
@@ -121,7 +121,7 @@ class MaximizedWindow(tk.Tk):
         # scale diffrnt để rể quan sát
         extrema = ela_image2.getextrema()
         max_diff = max([ex[1] for ex in extrema])
-        scale = 255.0 / max_diff if max_diff != 0 else 1  # Bắt lỗi chia cho 0
+        scale = 255.0 / max_diff if max_diff != 0 else 1  # Bắt lỗi không chia cho 0
         ela_image2 = ela_image2.point(lambda p: p * scale)
 
         # Trả về ảnh ELA đã được xử lý
